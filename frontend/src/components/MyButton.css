@@ -1,0 +1,11 @@
+
+button{
+    color: black;
+    background-color: rgb(240, 240, 240);
+    border-style: outset;
+    border-color:blueviolet
+}
+
+button:hover {
+    background-color: rgb(220, 220, 220);
+}

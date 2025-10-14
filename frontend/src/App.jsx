@@ -3,8 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Link } from "react-router"
-import Home from "./Home"
-import AddSend from "./AddSend"
+import Home from "./pages/Home"
+import AddSend from "./pages/AddSend"
 import { Routes, Route } from "react-router"
 
 
