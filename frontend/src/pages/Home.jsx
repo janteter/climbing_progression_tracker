@@ -1,5 +1,5 @@
 import './Home.css'
-import NavigationBar from '../components/NavigationBar'
+import HomeNavigationBar from '../components/HomeNavigationBar'
 
 export default function Home() {
 
@@ -9,8 +9,11 @@ export default function Home() {
         <div>
             <p className="myIntro">
                 Welcome to the Climbing Progression Tracker <br/>
-                This application allows you to record, add, and review your climbing ascent! <br/>
+                This application allows you to record, add, and review your climbing ascents! <br/> 
             </p>
+        </div>
+        <div> 
+            <HomeNavigationBar></HomeNavigationBar> 
         </div>
         </>
 

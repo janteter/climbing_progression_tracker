@@ -3,9 +3,11 @@ button{
     color: black;
     background-color: rgb(240, 240, 240);
     border-style: outset;
-    border-color:blueviolet
+    border-color:rgb(151, 107, 185);
+    border-width: medium;
 }
 
 button:hover {
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(180, 180, 180);
+    border-color: rgb(149, 5, 238)
 }
