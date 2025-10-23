@@ -23,3 +23,5 @@ app.add_middleware(
 @app.get("/")
 def root():
     return{"message": "Climbing Progression Tracker API"}
+
+
