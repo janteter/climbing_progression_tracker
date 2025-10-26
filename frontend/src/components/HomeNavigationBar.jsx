@@ -6,11 +6,14 @@ export default function HomeNavigationBar(){
     return(
         <div>
             <nav>
-                    <MyButton text="Today's Sends"></MyButton>
-                <NavLink to="/newSend">
-                    <MyButton text="Add a Send"></MyButton>
+                <NavLink to="/">
+                    <MyButton className="h-button" text="Home Page"></MyButton>
                 </NavLink>
-                    <MyButton text="Previous Sends"></MyButton>
+                    <MyButton className="h-button" text="Today's Sends"></MyButton>
+                <NavLink to="/newSend">
+                    <MyButton className="h-button" text="Add a Send"></MyButton>
+                </NavLink>
+                    <MyButton className="h-button" text="Previous Sends"></MyButton>
             </nav>
         </div>
     )

@@ -3,7 +3,7 @@ import './MyButton.css'
 export default function MyButton({ text, onClick }) {
 
     return(
-        <button onClick={onClick}>{text}</button>
+        <button className="custom-b" onClick={onClick}>{text}</button>
     )
 
 }
