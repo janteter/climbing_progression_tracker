@@ -1,13 +1,17 @@
 
-button{
+.custom-b{
     color: black;
     background-color: rgb(240, 240, 240);
     border-style: outset;
     border-color:rgb(151, 107, 185);
     border-width: medium;
+    padding-right:50px;
+    padding-left:50px;
+    margin-right:50px;
+    margin-left:50px;
 }
 
-button:hover {
+.custom-b:hover {
     background-color: rgb(180, 180, 180);
     border-color: rgb(149, 5, 238)
 }
