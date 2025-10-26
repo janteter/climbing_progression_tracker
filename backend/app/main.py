@@ -2,6 +2,8 @@ from typing import Union
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.databaseConnection import create_db_and_tables 
+from app.routers import sends
 
 app = FastAPI(title="Climbing Progression Tracker")
 
@@ -25,3 +27,8 @@ def root():
     return{"message": "Climbing Progression Tracker API"}
 
 
+@app.on_event("startup")
+def on_startup():
+    create_db_and_tables()
+
+app.include_router(sends.router)

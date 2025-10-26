@@ -1,4 +1,5 @@
 from typing import Annotated
+from fastapi import Depends 
 from sqlmodel import SQLModel, create_engine, Session
 
 sqlite_file_name = "climbing_progression_tracker.db"
