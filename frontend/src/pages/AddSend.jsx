@@ -21,7 +21,7 @@ export default function AddSend(){
     };
 
     const handleSubmit = async (e) => {
-        e.preventDdefault();
+        e.preventDefault();
 
         try{
             const response = await newSend(form);
@@ -44,7 +44,7 @@ export default function AddSend(){
         <div>
             <form onSubmit={handleSubmit}>
                 
-                <label for="style">Send Style <br/></label>
+                <label htmlFor="style">Send Style <br/></label>
                 <input 
                     type="text" 
                     id="style" 
@@ -52,18 +52,18 @@ export default function AddSend(){
                     onChange={handleChange}>
                 </input><br/><br/>
                 
-                <label for="diff">Send Send Difficulty <br/></label>
+                <label htmlFor="diff">Send Send Difficulty <br/></label>
                 <input 
                     type="text" 
-                    id="diff" 
+                    id="difficulty" 
                     value={form.difficulty}
                     onChange={handleChange}>
                 </input><br/><br/>
                 
-                <label for="hold">Send Hold Types <br/></label>
+                <label htmlFor="hold">Send Hold Types <br/></label>
                 <input 
                     type="text" 
-                    id="hold" 
+                    id="holds" 
                     value={form.holds}
                     onChange={handleChange}>
                 </input><br/><br/>

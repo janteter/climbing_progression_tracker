@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.post("/sends", response_model=SendBase)
 def create_send(send: Send, session: SessionDep) -> any:
-    session.add(Send)
+    session.add(send)
     session.commit()
     session.refresh(send)
     return send
