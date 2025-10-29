@@ -9,9 +9,7 @@ app = FastAPI(title="Climbing Progression Tracker")
 
 origins = [
     "http://localhost:5173",
-    "http://localhost:5174",
-    "http://localhost:5179",
-    "http://localhost:3000",
+    "http://127.0.0.1:5173",
 ]
 
 app.add_middleware(
@@ -22,6 +20,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(sends.router)
+
 @app.get("/")
 def root():
     return{"message": "Climbing Progression Tracker API"}
@@ -30,5 +30,3 @@ def root():
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
-
-app.include_router(sends.router)
