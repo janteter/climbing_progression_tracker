@@ -13,7 +13,9 @@ export default function HomeNavigationBar(){
                 <NavLink to="/newSend">
                     <MyButton className="h-button" text="Add a Send"></MyButton>
                 </NavLink>
+                <NavLink to="/prevSends">
                     <MyButton className="h-button" text="Previous Sends"></MyButton>
+                </NavLink>
             </nav>
         </div>
     )

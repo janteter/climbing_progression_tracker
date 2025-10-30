@@ -7,3 +7,13 @@ export async function newSend( dataObject ) {
         body: JSON.stringify(dataObject)
     });
 }
+
+export async function retrieveClimbs ( dataObject ){
+    const response = await fetch("http://localhost:8000/sends", {
+        method: "GET",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(dataObject)
+    })
+}
