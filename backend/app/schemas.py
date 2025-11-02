@@ -5,3 +5,6 @@ class SendBase(BaseModel):
     style: str
     difficulty: str
     holds: str
+
+class SendListItem(SendBase):
+    sequence: str

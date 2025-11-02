@@ -9,11 +9,17 @@ export async function newSend( dataObject ) {
 }
 
 export async function retrieveClimbs ( dataObject ){
-    const response = await fetch("http://localhost:8000/sends", {
+    
+    const params = new URLSearchParams({
+        target_date: dataObject.target_date
+    })
+
+    const response = await fetch(`http://localhost:8000/prev_sends?${params}`, {
         method: "GET",
         headers : {
             "Content-Type" : "application/json"
         },
-        body: JSON.stringify(dataObject)
-    })
+    });
+
+    return response.json()
 }
