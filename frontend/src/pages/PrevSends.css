@@ -1,0 +1,28 @@
+.list{
+    border: medium solid black;
+    margin: 10% auto;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    max-width: 200px;
+    
+}
+
+.inbox{
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.result{
+    max-width: 150px;
+    margin: 10px;
+}
+
+.retrieve{
+    padding: 20px;
+}
+
+#root{
+    min-height: 100vh;
+    width: 100%;
+}
