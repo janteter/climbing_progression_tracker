@@ -1,7 +1,10 @@
 from fastapi import APIRouter
 from ..databaseConnection import SessionDep
 from ..models import Send
-from ..schemas import SendBase
+from ..schemas import SendBase, SendListItem
+from datetime import date
+from sqlalchemy import select
+
 
 router = APIRouter()
 
@@ -11,3 +14,8 @@ def create_send(send: Send, session: SessionDep) -> any:
     session.commit()
     session.refresh(send)
     return send
+
+@router.get("/prev_sends", response_model=list[SendListItem])
+def prev_sends_by_date(target_date: date, session: SessionDep):
+    sends = session.exec(select(Send).where(Send.send_date == target_date)).scalars().all()
+    return sends
