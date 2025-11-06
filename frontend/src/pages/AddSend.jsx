@@ -34,7 +34,7 @@ export default function AddSend(){
 
     return (
         <>
-        <div className="banner"><HomeNavigationBar></HomeNavigationBar> </div>
+        <div><HomeNavigationBar></HomeNavigationBar> </div>
         <h1>This is where you add a send!</h1>
         <div>
             <p>

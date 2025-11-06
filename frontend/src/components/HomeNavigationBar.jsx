@@ -4,7 +4,7 @@ import "./HomeNavigationBar.css"
 
 export default function HomeNavigationBar(){
     return(
-        <div>
+        <div className="banner">
             <nav>
                 <NavLink to="/">
                     <MyButton className="h-button" text="Home Page"></MyButton>
