@@ -2,14 +2,13 @@ import './App.css'
 import Home from "./pages/Home"
 import AddSend from "./pages/AddSend"
 import PrevSends from "./pages/PrevSends"
+import Today from "./pages/Today"
 import { Routes, Route } from "react-router"
 
 
 
 
-function App() {
-  // const [count, setCount] = useState(0)
-  
+export default function App() {
 
   return (
     <>
@@ -17,9 +16,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path="newSend" element={<AddSend />}/>
             <Route path="prevSends" element={<PrevSends />}/>
+            <Route path="todaySends" element={<Today/>}/>
       </Routes>
       </> 
   )
 }
-
-export default App
