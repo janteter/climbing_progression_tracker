@@ -1,6 +1,6 @@
 import HomeNavigationBar from '../components/HomeNavigationBar.jsx'
 import MyButton from  '../components/MyButton.jsx'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { retrieveClimbs } from '../api/api.js';
 import './PrevSends.css'
 
