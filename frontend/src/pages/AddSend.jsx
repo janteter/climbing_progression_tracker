@@ -52,7 +52,7 @@ export default function AddSend(){
                     onChange={handleChange}>
                 </input><br/><br/>
                 
-                <label htmlFor="diff">Send Send Difficulty <br/></label>
+                <label htmlFor="diff">Send Difficulty <br/></label>
                 <input 
                     type="text" 
                     id="difficulty" 

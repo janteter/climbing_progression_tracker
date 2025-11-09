@@ -9,7 +9,9 @@ export default function HomeNavigationBar(){
                 <NavLink to="/">
                     <MyButton className="h-button" text="Home Page"></MyButton>
                 </NavLink>
+                <NavLink to="/todaySends">
                     <MyButton className="h-button" text="Today's Sends"></MyButton>
+                </NavLink>
                 <NavLink to="/newSend">
                     <MyButton className="h-button" text="Add a Send"></MyButton>
                 </NavLink>
