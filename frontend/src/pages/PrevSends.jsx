@@ -38,6 +38,7 @@ export default function PrevSends(){
             <p className="result" >Style:  <br/>{climb.style}</p>
             <p className="result" >Difficulty: <br/>{climb.difficulty}</p>
             <p className="result" >Type of Holds: <br/>{climb.holds}</p>
+            <MyButton></MyButton>
         </div>
     )
 

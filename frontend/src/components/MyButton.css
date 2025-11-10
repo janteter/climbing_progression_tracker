@@ -2,13 +2,24 @@
 .custom-b{
     color: black;
     background-color: rgb(240, 240, 240);
+    
     border-style: outset;
     border-color:rgb(151, 107, 185);
     border-width: medium;
+    border-radius: 8px;
+    
+    padding: 0.6em 1.2em;
     padding-right:50px;
     padding-left:50px;
+   
     margin-right:50px;
     margin-left:50px;
+    
+    font-size: 1em;
+    font-weight: 500;
+
+    cursor: pointer;
+
 }
 
 .custom-b:hover {
