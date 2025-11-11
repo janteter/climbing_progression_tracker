@@ -1,5 +1,5 @@
 export async function newSend( dataObject ) {
-    const response = await fetch("http://localhost:8000/sends", {
+    const response = await fetch('http://localhost:8000/sends', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -24,6 +24,12 @@ export async function retrieveClimbs ( dataObject ){
     return response.json()
 }
 
-export async function deleteClimb( dataObject) {
+export async function deleteClimb( dataObject ) {
+    const params = new URLSearchParams({
+        sequence: dataObject.sequence
+    })
     
+    const response = await fetch(`http://localhost:8000/sends/${params}`, {
+        method: "DELETE",
+    });
 }
