@@ -3,7 +3,7 @@ from ..databaseConnection import SessionDep
 from ..models import Send
 from ..schemas import SendBase, SendListItem
 from datetime import date
-from sqlalchemy import select
+from sqlalchemy import select, delete
 
 
 router = APIRouter()
@@ -14,6 +14,12 @@ def create_send(send: Send, session: SessionDep) -> any:
     session.commit()
     session.refresh(send)
     return send
+
+@router.delete("/sends{sequence}")
+def delete_send(sequence: str, session: SessionDep):
+    stmt = delete(Send).where(Send.sequence == sequence)
+    session.exec(stmt)
+    session.commit()
 
 @router.get("/prev_sends", response_model=list[SendListItem])
 def prev_sends_by_date(target_date: date, session: SessionDep):

@@ -1,7 +1,7 @@
 import HomeNavigationBar from '../components/HomeNavigationBar.jsx'
 import MyButton from  '../components/MyButton.jsx'
 import { useState } from 'react'
-import { retrieveClimbs } from '../api/api.js';
+import { retrieveClimbs, deleteClimb } from '../api/api.js'
 import './PrevSends.css'
 
 export default function PrevSends(){
@@ -33,11 +33,24 @@ export default function PrevSends(){
         }
     }
 
+    const handleDelete = async (e) => {
+        e.preventDefault();
+
+        try{
+            const response = await deleteClimb(e)
+        }
+        catch(error){
+            alert('failed to delete')
+        }
+
+    }
+
     const displaySendList = sendsList.map((climb) => 
         <div className="list" key={climb.sequence}>
             <p className="result" >Style:  <br/>{climb.style}</p>
             <p className="result" >Difficulty: <br/>{climb.difficulty}</p>
             <p className="result" >Type of Holds: <br/>{climb.holds}</p>
+            <MyButton onClick={() => handleDelete(climb.sequence)}></MyButton>
         </div>
     )
 
