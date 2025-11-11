@@ -25,11 +25,7 @@ export async function retrieveClimbs ( dataObject ){
 }
 
 export async function deleteClimb( dataObject ) {
-    const params = new URLSearchParams({
-        sequence: dataObject.sequence
-    })
-    
-    const response = await fetch(`http://localhost:8000/sends/${params}`, {
+    const response = await fetch(`http://localhost:8000/sends/${dataObject}`, {
         method: "DELETE",
     });
 }
