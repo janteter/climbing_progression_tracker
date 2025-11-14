@@ -26,7 +26,7 @@ export default function PrevSends(){
         try{
             const response = await retrieveClimbs(form);
             setSendsList(response)
-            alert("successfully retrieved climbs for your specified day!")
+            
         }
         catch (error) {
             alert("failed to retrieve climbs!")
