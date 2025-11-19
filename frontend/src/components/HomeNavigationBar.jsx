@@ -6,7 +6,7 @@ export default function HomeNavigationBar(){
     return(
         <div className="banner">
             <nav>
-                <NavLink to="/">
+                <NavLink to="/Home">
                     <MyButton className="h-button" text="Home Page"></MyButton>
                 </NavLink>
                 <NavLink to="/todaySends">
