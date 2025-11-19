@@ -10,3 +10,11 @@ class Send(SQLModel, table=True):
     style: str
     difficulty: str
     holds: str
+
+class Climber(SQLModel, table=True):
+    __tablename__="Climber"
+
+    username: str
+    password: str
+    fullname: str
+    disabled: bool = Field(default = True)
