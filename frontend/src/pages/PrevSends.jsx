@@ -1,8 +1,8 @@
-import HomeNavigationBar from '../components/HomeNavigationBar.jsx'
-import MyButton from  '../components/MyButton.jsx'
-import { useState } from 'react'
-import { retrieveClimbs, deleteClimb } from '../api/api.js'
-import './PrevSends.css'
+import HomeNavigationBar from '../components/HomeNavigationBar.jsx';
+import MyButton from  '../components/MyButton.jsx';
+import { useState } from 'react';
+import { retrieveClimbs, deleteClimb } from '../api/api.js';
+import './PrevSends.css';
 
 export default function PrevSends(){
     
@@ -25,25 +25,25 @@ export default function PrevSends(){
 
         try{
             const response = await retrieveClimbs(form);
-            setSendsList(response)
+            setSendsList(response);
             
         }
         catch (error) {
-            alert("failed to retrieve climbs!")
+            alert("failed to retrieve climbs!");
         }
-    }
+    };
 
     const handleDelete = async (e) => {
        // e.preventDefault();
 
         try{
-            const response = await deleteClimb(e)
+            const response = await deleteClimb(e);
         }
         catch(error){
-            alert('failed to delete')
+            alert('failed to delete');
         }
 
-    }
+    };
 
     const displaySendList = sendsList.map((climb) => 
         <div className="list" key={climb.sequence}>
@@ -54,7 +54,7 @@ export default function PrevSends(){
                 <br/><MyButton text="Delete" onClick={() => handleDelete(climb.sequence)}></MyButton>
             </div>
         </div>
-    )
+    );
 
 
     return(
@@ -81,5 +81,5 @@ export default function PrevSends(){
                 </div> 
             </div>
         </>
-    )
+    );
 }

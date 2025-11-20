@@ -1,13 +1,13 @@
-import './Login.css'
-import { useState } from 'react'
-import MyButton from '../components/MyButton.jsx'
-import { NavLink } from "react-router"
+import './Login.css';
+import { useState } from 'react';
+import MyButton from '../components/MyButton.jsx';
+import { NavLink } from "react-router";
 
 
 export default function Login(){
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     return( 
         <>
@@ -41,6 +41,5 @@ export default function Login(){
             </nav>
         </div>
         </>
-    )
-
+    );
 }

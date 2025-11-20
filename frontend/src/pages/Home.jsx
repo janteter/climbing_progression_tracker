@@ -1,5 +1,5 @@
-import './Home.css'
-import HomeNavigationBar from '../components/HomeNavigationBar'
+import './Home.css';
+import HomeNavigationBar from '../components/HomeNavigationBar';
 
 export default function Home() {
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 
 export default function Register(){
@@ -7,21 +7,21 @@ export default function Register(){
         username: '',
         password: '',
         fullname: '',
-    })
+    });
     
 
-    const handleChange = () => {
+    const handleChange = (e) => {
         setRegisterInfo({
             ...registerInfo,
             [e.target.name] : e.target.value
-        })
-    }
+        });
+    };
 
     return(
         <>
             <h1>Registration</h1>
             <form>
-                <label htmlFor="username">Input Username: </label>
+                <label htmlFor="username">New Username: </label>
                 <input
                 type="text"
                 value={registerInfo.username}
@@ -29,14 +29,14 @@ export default function Register(){
                 >
                 </input><br/><br/>
                 
-                <label htmlFor="password">Input Password: </label>
+                <label htmlFor="password">New Password: </label>
                 <input
                 type="text"
                 value={registerInfo.password}
                 onChange={handleChange}
                 ></input><br/><br/>
 
-                <label htmlFor="fullanme">Input Your Full Name: </label>
+                <label htmlFor="fullanme">Your Full Name: </label>
                 <input
                 type="text"
                 value={registerInfo.fullname}
@@ -47,5 +47,5 @@ export default function Register(){
 
 
         </>
-    )
+    );
 }
