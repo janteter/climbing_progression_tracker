@@ -1,6 +1,6 @@
 import MyButton from "./MyButton";
-import { NavLink } from "react-router"
-import "./HomeNavigationBar.css"
+import { NavLink } from "react-router";
+import "./HomeNavigationBar.css";
 
 export default function HomeNavigationBar(){
     return(
@@ -20,5 +20,5 @@ export default function HomeNavigationBar(){
                 </NavLink>
             </nav>
         </div>
-    )
+    );
 }

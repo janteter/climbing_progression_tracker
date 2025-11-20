@@ -12,7 +12,7 @@ export async function retrieveClimbs ( dataObject ){
     
     const params = new URLSearchParams({
         target_date: dataObject.target_date
-    })
+    });
 
     const response = await fetch(`http://localhost:8000/prev_sends?${params}`, {
         method: "GET",
@@ -21,7 +21,7 @@ export async function retrieveClimbs ( dataObject ){
         },
     });
 
-    return response.json()
+    return response.json();
 }
 
 export async function deleteClimb( dataObject ) {

@@ -1,8 +1,8 @@
-import './AddSend.css'
-import MyButton from  '../components/MyButton.jsx'
-import HomeNavigationBar from '../components/HomeNavigationBar.jsx'
-import { useState } from 'react'
-import { newSend } from '../api/api.js'
+import './AddSend.css';
+import MyButton from  '../components/MyButton.jsx';
+import HomeNavigationBar from '../components/HomeNavigationBar.jsx';
+import { useState } from 'react';
+import { newSend } from '../api/api.js';
 
 
 export default function AddSend(){
@@ -25,10 +25,10 @@ export default function AddSend(){
 
         try{
             const response = await newSend(form);
-            alert('Send Added Successfully!')
+            alert('Send Added Successfully!');
         }
         catch (error) {
-            alert('Failed to Add Send :(')
+            console.error('Failed to Add Send :(');
         }
     };
 
