@@ -21,7 +21,8 @@ export async function retrieveClimbs ( dataObject ){
         },
     });
 
-    return response.json();
+    
+    return response;
 }
 
 export async function deleteClimb( dataObject ) {

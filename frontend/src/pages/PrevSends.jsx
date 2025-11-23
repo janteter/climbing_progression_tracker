@@ -11,6 +11,8 @@ export default function PrevSends(){
     });
 
     const [sendsList, setSendsList] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
+
 
 
     const handleChange = (e) => {
@@ -25,11 +27,18 @@ export default function PrevSends(){
 
         try{
             const response = await retrieveClimbs(form);
-            setSendsList(response);
+            if(!response.ok) {
+                setErrorMessage(`${response}`);
+                throw new Error(`Response Status: ${response}`);
+            }
+            else {
+                const data = await response.json();
+                setSendsList(data);
+            }
             
         }
         catch (error) {
-            alert("failed to retrieve climbs!");
+            console.error(error.message);
         }
     };
 
@@ -78,6 +87,7 @@ export default function PrevSends(){
                 </form>
                  <div>
                     {sendsList && displaySendList}
+                    {/*{errorMessage}*/}
                 </div> 
             </div>
         </>
