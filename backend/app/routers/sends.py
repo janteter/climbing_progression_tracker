@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from ..databaseConnection import SessionDep
 from ..models import SendBase, SendListItem
 from ..schemas import Send 
@@ -21,7 +21,9 @@ def delete_send(sequence: str, session: SessionDep):
     session.exec(stmt)
     session.commit()
 
-@router.get("/prev_sends", response_model=list[SendListItem])
+@router.get("/prev_sends", response_model=list[SendListItem], status_code=200)
 def prev_sends_by_date(target_date: date, session: SessionDep):
     sends = session.exec(select(Send).where(Send.send_date == target_date)).scalars().all()
+    if not sends:
+        raise HTTPException(status_code=404, detail="No sends found for date inputted")
     return sends

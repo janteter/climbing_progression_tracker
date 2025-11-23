@@ -1,6 +1,7 @@
 from datetime import date
 import uuid
 from app.models import SendBase, ClimberBase
+from sqlmodel import Field
 
 class ClimberInDB(ClimberBase, table=True):
     __tablename__="Climber"
