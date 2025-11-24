@@ -15,6 +15,8 @@ function dateFormat() {
 export default function TodaySends() {
 
     const [sendsData, setSendsData] = useState([]);
+    const [errorShow, setErrorShow] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         let cancelled = false;
@@ -27,18 +29,29 @@ export default function TodaySends() {
             };
 
             console.log(dateObj);
-            const response = await retrieveClimbs(dateObj);
-            
-            if(!cancelled) {
-                setSendsData(response);
+            try {
+                const response = await retrieveClimbs(dateObj);
+                
+                if(!response.ok) {
+                    setErrorShow(true);
+                    setErrorMessage(`There are no climbs recorded for today ${currDate}`);
+                }
+                else{
+                    const data = await response.json();
+                    setSendsData(data);
+                }
             }
+            catch (error) {
+                console.error(error.message);
+            }
+            
           };
 
-          fetchClimbs();
-          
-          return () => {
-            cancelled = true;
-          };
+        fetchClimbs();
+        
+        return () => {
+        cancelled = true;
+        };
 
         }, []
     );
@@ -53,9 +66,14 @@ export default function TodaySends() {
 
     return( 
         <>
-            <div><HomeNavigationBar></HomeNavigationBar></div>
+            <div>
+                <HomeNavigationBar></HomeNavigationBar>
+            </div>
             <h1> Today's Sends</h1>
-            <div> {sendsData && displaySendList} </div>
+            <div> 
+                {sendsData && displaySendList} 
+                {errorShow && errorMessage}
+            </div>
         </>
     );
 }

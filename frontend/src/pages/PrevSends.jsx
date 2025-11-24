@@ -12,6 +12,7 @@ export default function PrevSends(){
 
     const [sendsList, setSendsList] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+    const [errorShow, setErrorShow] = useState(false);
 
 
 
@@ -28,11 +29,14 @@ export default function PrevSends(){
         try{
             const response = await retrieveClimbs(form);
             if(!response.ok) {
-                setErrorMessage(`${response}`);
+                setSendsList([]);
+                setErrorShow(true);
+                setErrorMessage(`No climbs found for ${form.target_date}`);
                 throw new Error(`Response Status: ${response}`);
             }
             else {
                 const data = await response.json();
+                setErrorShow(false);
                 setSendsList(data);
             }
             
@@ -85,10 +89,12 @@ export default function PrevSends(){
                     </input><br/>
                     <MyButton className="retrieve" text="Retrieve"></MyButton> <br/>
                 </form>
-                 <div>
-                    {sendsList && displaySendList}
-                    {/*{errorMessage}*/}
-                </div> 
+            </div>
+            <div>   
+                {sendsList && displaySendList}
+            </div> 
+            <div><br/>
+                {errorShow && errorMessage}
             </div>
         </>
     );
