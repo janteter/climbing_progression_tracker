@@ -13,3 +13,10 @@ class ClimberBase(SQLModel):
     username: str = Field(primary_key=True)
     email: str
     fullname: str
+
+class Token(SQLModel):
+    access_token: str
+    token_type: str
+
+class TokenData(SQLModel):
+    username: str | None = none
