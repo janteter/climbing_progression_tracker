@@ -8,6 +8,7 @@ class ClimberInDB(ClimberBase, table=True):
 
     hashed_password: str
     disabled: bool = Field(default = True)
+    climberID: str = Field(primary_key=True, default_factory=lambda: str(uuid.uuid4()))
 
 class Send(SendBase, table=True):
     __tablename__="Sends"

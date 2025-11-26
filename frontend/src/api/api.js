@@ -30,3 +30,14 @@ export async function deleteClimb( dataObject ) {
         method: "DELETE",
     });
 }
+
+export async function newClimber( dataObject ) {
+    const response = await fetch('http://localhost:8000/new_climber', {
+        method: "POST",
+        headers : {
+          "Content-Type" : "application/json"  
+        },
+        body: JSON.stringify(dataObject)
+    });
+
+}
