@@ -1,8 +1,11 @@
 import jwt
-from pwdlib import PasswordHash
 import os
+from sqlalchemy import select, delete
+from pwdlib import PasswordHash
 from dotenv import load_dotenv
 from datetime import timedelta, timezone
+from schemas import ClimberInDB
+from ..databaseConnection import SessionDep
 
 load_dotenv()
 
@@ -27,5 +30,18 @@ def create_access_tokens(data: dict, expires_delta: timedelta | None = None):
     to_encode.update({"exp" : expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
-    
 
+def get_climber(username: str, session: SessionDep):
+    stmt = select(ClimberInDB).where(username == ClimberInDB.username)
+    climber = session.exec(stmt).first()
+
+    if climber:
+        return climber
+
+def authenticate_climber(username: str, password: str, session: SessionDep):
+    climber = get_climber(username, session)
+    if not climber:
+        return False
+    if not verify_password(password, climber.password):
+        return False
+    return climber
