@@ -29,6 +29,7 @@ export async function deleteClimb( dataObject ) {
     const response = await fetch(`http://localhost:8000/sends/${dataObject}`, {
         method: "DELETE",
     });
+
 }
 
 export async function newClimber( dataObject ) {
@@ -39,5 +40,5 @@ export async function newClimber( dataObject ) {
         },
         body: JSON.stringify(dataObject)
     });
-
+    return response;
 }

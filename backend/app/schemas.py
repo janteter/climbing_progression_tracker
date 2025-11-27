@@ -6,8 +6,8 @@ from sqlmodel import Field
 class ClimberInDB(ClimberBase, table=True):
     __tablename__="Climber"
 
-    hashed_password: str
-    disabled: bool = Field(default = True)
+    password: str
+    disabled: bool = Field(default = False)
     climberID: str = Field(primary_key=True, default_factory=lambda: str(uuid.uuid4()))
 
 class Send(SendBase, table=True):
