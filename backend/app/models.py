@@ -19,4 +19,4 @@ class Token(SQLModel):
     token_type: str
 
 class TokenData(SQLModel):
-    username: str | None = none
+    username: str | None = None

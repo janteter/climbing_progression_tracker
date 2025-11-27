@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.databaseConnection import create_db_and_tables 
 from app.routers import sends
+from app.routers import climber
 
 app = FastAPI(title="Climbing Progression Tracker")
 
@@ -21,6 +22,7 @@ app.add_middleware(
 )
 
 app.include_router(sends.router)
+app.include_router(climber.router)
 
 @app.get("/")
 def root():
