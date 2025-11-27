@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from ..databaseConnection import SessionDep
 from ..models import ClimberBase
 from ..schemas import ClimberInDB 
-from ..security import get_password_hash
+from ..auth/utils import get_password_hash
 import json
 
 router = APIRouter()
