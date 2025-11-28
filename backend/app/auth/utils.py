@@ -1,11 +1,13 @@
+from ..schemas import ClimberInDB
+from ..databaseConnection import SessionDep
+
 import jwt
 import os
 from sqlalchemy import select, delete
 from pwdlib import PasswordHash
 from dotenv import load_dotenv
 from datetime import timedelta, timezone
-from schemas import ClimberInDB
-from ..databaseConnection import SessionDep
+from fastapi.security import OAuth2PasswordRequestForm
 
 load_dotenv()
 
@@ -16,7 +18,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 password_hash = PasswordHash.recommended()
 
 def verify_password(plain_password, hashed_password):
-    return password.verify(plain_password, hashed_password)
+    return password_hash.verify(plain_password, hashed_password)
 
 def get_password_hash(password):
     return password_hash.hash(password)
@@ -32,9 +34,9 @@ def create_access_tokens(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 def get_climber(username: str, session: SessionDep):
-    stmt = select(ClimberInDB).where(username == ClimberInDB.username)
-    climber = session.exec(stmt).first()
-
+    stmt = select(ClimberInDB).where(ClimberInDB.username == username)
+    climber = session.exec(stmt).scalars().first()
+    print(climber)
     if climber:
         return climber
 
