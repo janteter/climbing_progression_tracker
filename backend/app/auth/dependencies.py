@@ -1,3 +1,6 @@
+from ..databaseConnection import SessionDep
+from ..models import TokenData
+
 import jwt
 import os
 from typing import Annotated
@@ -5,9 +8,8 @@ from dotenv import load_dotenv
 from fastapi import Depends, APIRouter, HTTPException, status_code
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt.exceptions import InvalidTokenError 
-from ..models import TokenData
 from utils import get_user
-from ..databaseConnection import SessionDep
+
 
 oauth_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -15,7 +17,6 @@ load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 def get_current_user(token: Annotated[str, Depends(oauth_scheme)], session: SessionDep):
     credentials_exception = HTTPException(

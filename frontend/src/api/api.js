@@ -42,3 +42,20 @@ export async function newClimber( dataObject ) {
     });
     return response;
 }
+
+export async function login( dataObject ) {
+    const formData = new FormData();
+    const username = dataObject.username;
+    const password = dataObject.password;
+
+    formData.append("username", username);
+    formData.append("password", password);
+    console.log(formData.has("username"));
+    console.log(formData.has("password"));
+    
+    const response = await fetch('http://localhost:8000/token', {
+        method: "POST",
+        body: formData
+    });
+
+}

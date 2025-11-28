@@ -2,23 +2,46 @@ import './Login.css';
 import { useState } from 'react';
 import MyButton from '../components/MyButton.jsx';
 import { NavLink } from "react-router";
+import { login } from '../api/api.js';
 
 
 export default function Login(){
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [loginInfo, setLoginInfo] = useState({
+        username: '',
+        password: ''
+    });
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try{
+            const response = login(loginInfo);
+        }
+        catch (error){
+            console.error(error);
+        }
+
+    };
+
+    const handleChange = (e) => {
+        setLoginInfo({
+            ...loginInfo,
+            [e.target.id] : e.target.value
+        });
+    };
 
     return( 
         <>
         <h1>Login</h1>
         <div>
-            <form>
+            <form on onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
                 <input
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={loginInfo.username}
+                onChange={handleChange}
                 id="username"
                 >
                 </input><br/><br/>
@@ -26,10 +49,12 @@ export default function Login(){
                 <label htmlFor="password">Password: </label>
                 <input
                 type="text"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
+                value={loginInfo.password}
+                onChange={handleChange}
                 id="password"
                 ></input>
+                <br/>
+            <MyButton text='login'></MyButton>
             </form>
         </div>
         <br/><br/>
