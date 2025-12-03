@@ -53,7 +53,7 @@ export default function PrevSends(){
             const response = await deleteClimb(e);
         }
         catch(error){
-            alert('failed to delete');
+            console.error(error.message);
         }
 
     };

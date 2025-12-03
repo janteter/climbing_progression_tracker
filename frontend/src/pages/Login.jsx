@@ -17,7 +17,9 @@ export default function Login(){
         e.preventDefault();
 
         try{
-            const response = login(loginInfo);
+            const response = await login(loginInfo);
+            const jwt = await response.json();
+            console.log(jwt);
         }
         catch (error){
             console.error(error);
@@ -36,7 +38,7 @@ export default function Login(){
         <>
         <h1>Login</h1>
         <div>
-            <form on onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
                 <input
                 type="text"

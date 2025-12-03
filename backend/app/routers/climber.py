@@ -4,10 +4,11 @@ from ..schemas import ClimberInDB
 from ..auth.utils import get_password_hash, create_access_tokens, authenticate_climber
 from ..models import Token
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Response
 import json
 from typing import Annotated
 from fastapi.security import OAuth2PasswordRequestForm
+from datetime import timedelta
 
 router = APIRouter()
 
@@ -26,8 +27,7 @@ def create_climber_account(climber: ClimberInDB, session: SessionDep):
 
 
 @router.post("/token")
-async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], session: SessionDep) -> Token:
-    print(form_data)
+async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], response: Response, session: SessionDep) -> Token:
     climber = authenticate_climber(form_data.username, form_data.password, session)
     if not climber:
         raise HTTPException(
@@ -39,4 +39,6 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     access_token = create_access_tokens(
         data={"sub": climber.username}, expires_delta=access_token_expires
     )
+    
+    
     return Token(access_token=access_token, token_type="bearer")
