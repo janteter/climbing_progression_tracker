@@ -18,8 +18,11 @@ export default function Login(){
 
         try{
             const response = await login(loginInfo);
-            const jwt = await response.json();
-            console.log(jwt);
+            
+            if (response.ok) {
+                console.log("Successful login");
+            }
+
         }
         catch (error){
             console.error(error);

@@ -27,7 +27,8 @@ def create_climber_account(climber: ClimberInDB, session: SessionDep):
 
 
 @router.post("/token")
-async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], response: Response, session: SessionDep) -> Token:
+async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], response: Response, session: SessionDep, status_code=201):
+    print(type(form_data))
     climber = authenticate_climber(form_data.username, form_data.password, session)
     if not climber:
         raise HTTPException(
@@ -40,5 +41,6 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
         data={"sub": climber.username}, expires_delta=access_token_expires
     )
     
+    response.set_cookie(key="token", value=access_token, httponly=True, secure=False, samesite='lax')
     
-    return Token(access_token=access_token, token_type="bearer")
+    return {"message": "Succesful login"}

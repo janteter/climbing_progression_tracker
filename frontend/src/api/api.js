@@ -52,7 +52,8 @@ export async function login( dataObject ) {
     
     const response = await fetch('http://localhost:8000/token', {
         method: "POST",
-        body: formData
+        body: formData,
+        credentials: 'include'
     });
     
     return response;
