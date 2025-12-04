@@ -5,7 +5,7 @@ import jwt
 import os
 from typing import Annotated
 from dotenv import load_dotenv
-from fastapi import Depends, APIRouter, HTTPException, status_code
+from fastapi import Depends, APIRouter, HTTPException, status_code, Cookie
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt.exceptions import InvalidTokenError 
 from utils import get_user
@@ -18,7 +18,7 @@ load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 
-def get_current_user(token: Annotated[str, Depends(oauth_scheme)], session: SessionDep):
+def get_current_user(token: Annotated[str | None, Cookie()] = None, session: SessionDep):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
