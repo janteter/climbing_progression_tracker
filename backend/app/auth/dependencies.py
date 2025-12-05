@@ -18,7 +18,7 @@ load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 
-def get_current_user(token: Annotated[str | None, Cookie()] = None, session: SessionDep):
+def get_current_climber(token: Annotated[str | None, Cookie()] = None, session: SessionDep):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

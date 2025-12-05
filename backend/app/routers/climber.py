@@ -43,4 +43,4 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     
     response.set_cookie(key="token", value=access_token, httponly=True, secure=False, samesite='lax')
     
-    return {"message": "Succesful login"}
+    return {"message": "Successful login"}
