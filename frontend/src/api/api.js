@@ -4,7 +4,8 @@ export async function newSend( dataObject ) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(dataObject)
+        body: JSON.stringify(dataObject),
+        credentials: 'include'
     });
 }
 
@@ -19,6 +20,7 @@ export async function retrieveClimbs ( dataObject ){
         headers : {
             "Content-Type" : "application/json"
         },
+        credentials: 'include'
     });
 
     return response;
@@ -27,8 +29,8 @@ export async function retrieveClimbs ( dataObject ){
 export async function deleteClimb( dataObject ) {
     const response = await fetch(`http://localhost:8000/sends/${dataObject}`, {
         method: "DELETE",
+        credentials: 'include'
     });
-
 }
 
 export async function newClimber( dataObject ) {
@@ -53,7 +55,6 @@ export async function login( dataObject ) {
     const response = await fetch('http://localhost:8000/token', {
         method: "POST",
         body: formData,
-        credentials: 'include'
     });
     
     return response;
