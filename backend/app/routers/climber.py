@@ -3,6 +3,7 @@ from ..models import ClimberBase
 from ..schemas import ClimberInDB 
 from ..auth.utils import get_password_hash, create_access_tokens, authenticate_climber
 from ..models import Token
+from ..auth.dependencies import get_current_climber
 
 from fastapi import APIRouter, HTTPException, Depends, Response
 import json
@@ -44,3 +45,7 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     response.set_cookie(key="token", value=access_token, httponly=True, secure=False, samesite='lax')
     
     return {"message": "Successful login"}
+
+@router.get("/status")
+async def status_check(climber_status = Depends(get_current_climber)):
+    return climber_status
