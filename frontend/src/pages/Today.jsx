@@ -45,7 +45,7 @@ export default function TodaySends() {
                 console.error(error.message);
             }
             
-          };
+        };
 
         fetchClimbs();
         

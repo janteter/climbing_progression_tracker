@@ -37,7 +37,6 @@ def create_access_tokens(data: dict, expires_delta: timedelta | None = None):
 def get_climber(username: str, session: SessionDep):
     stmt = select(ClimberInDB).where(ClimberInDB.username == username)
     climber = session.exec(stmt).scalars().first()
-    print(climber)
     if climber:
         return climber
 

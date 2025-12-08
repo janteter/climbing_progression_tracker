@@ -59,3 +59,12 @@ export async function login( dataObject ) {
     
     return response;
 }
+
+export async function statusCheck(){
+    const response = await fetch('http://localhost:8000/status', {
+        method: "GET",
+        credentials: 'include'
+    });
+    
+    return response;
+}
