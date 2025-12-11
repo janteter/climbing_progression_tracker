@@ -1,11 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
-import statusCheck from '../api';
+import { useState, useEffect, useContext, createContext } from 'react';
+import { useNavigate } from 'react-router';
+import { statusCheck } from '../api/api.js';
 
+const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
 
     const [authenticationStatus, setAuthenticationStatus] = useState(false);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         
         const fetchStatus = async () => {
@@ -27,7 +30,20 @@ export default function AuthProvider({ children }) {
         }, []
     );
 
+    function logOut () {
+        setAuthenticationStatus(false);
+        navigate("/");
+    }
+
     return (
-            children
+        <>    
+            <AuthContext.Provider value ={{ authenticationStatus, logOut }}>
+                {children}
+            </AuthContext.Provider>;
+        </>
     );   
-}
+};
+
+export const useAuth = () => {
+    return useContext(AuthContext);
+};
