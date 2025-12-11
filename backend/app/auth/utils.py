@@ -34,7 +34,7 @@ def create_access_tokens(data: dict, expires_delta: timedelta | None = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-def get_climber(username: str, session: SessionDep):
+def get_climber(session: SessionDep, username: str):
     stmt = select(ClimberInDB).where(ClimberInDB.username == username)
     climber = session.exec(stmt).scalars().first()
     if climber:
