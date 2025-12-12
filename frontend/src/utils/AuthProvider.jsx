@@ -7,6 +7,7 @@ const AuthContext = createContext();
 export default function AuthProvider({ children }) {
 
     const [authenticationStatus, setAuthenticationStatus] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,10 +19,17 @@ export default function AuthProvider({ children }) {
                 if (response.ok){
                     setAuthenticationStatus(true);
                 }
+                else {
+                    setAuthenticationStatus(false);
+                }
                 
             }
             catch (error) {
                 console.error(error.message);
+                setAuthenticationStatus(false);
+            }
+            finally{
+                setIsLoading(false);
             }
             
         };
@@ -37,7 +45,7 @@ export default function AuthProvider({ children }) {
 
     return (
         <>    
-            <AuthContext.Provider value ={{ authenticationStatus, logOut }}>
+            <AuthContext.Provider value ={{ authenticationStatus, isLoading, logOut }}>
                 {children}
             </AuthContext.Provider>;
         </>

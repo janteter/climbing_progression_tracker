@@ -41,7 +41,7 @@ def get_climber(session: SessionDep, username: str):
         return climber
 
 def authenticate_climber(username: str, password: str, session: SessionDep):
-    climber = get_climber(username, session)
+    climber = get_climber(session, username)
     if not climber:
         return False
     if not verify_password(password, climber.password):

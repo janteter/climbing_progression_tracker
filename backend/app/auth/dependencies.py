@@ -15,6 +15,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 
 def get_current_climber(session: SessionDep, token: Annotated[str | None, Cookie()] = None):
+    print(f'Token from Front: {token}')
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

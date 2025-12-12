@@ -5,15 +5,15 @@ import { useEffect } from 'react';
 
 
 export default function PrivateRoute({ children }) {
-    const user = useAuth();
+    const { authenticationStatus, isLoading} = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!user.authenticationStatus) {
+        if (!isLoading && !authenticationStatus) {
             navigate("/");
         }
 
-    }, [user.authenticationStatus, navigate]
+    }, [isLoading, authenticationStatus, navigate]
 );
 
     return children;  
