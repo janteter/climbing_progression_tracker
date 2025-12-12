@@ -12,7 +12,7 @@ class SendListItem(SendBase):
 class ClimberBase(SQLModel):
     
     climberID: str = Field(primary_key=True, default_factory=lambda: str(uuid.uuid4()))
-    username: str = Field(primary_key=True)
+    username: str = Field(unique=True)
     email: str
     fullname: str
 
