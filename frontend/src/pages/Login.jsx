@@ -1,8 +1,9 @@
 import './Login.css';
 import { useState } from 'react';
 import MyButton from '../components/MyButton.jsx';
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { login } from '../api/api.js';
+import { useAuth } from '../utils/AuthProvider.jsx';
 
 
 export default function Login(){
@@ -11,7 +12,8 @@ export default function Login(){
         username: '',
         password: ''
     });
-
+    const { loggedIn } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,7 +22,8 @@ export default function Login(){
             const response = await login(loginInfo);
             
             if (response.ok) {
-                console.log("Successful login");
+                loggedIn();
+                console.log("login navigating");
             }
 
         }

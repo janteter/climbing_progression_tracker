@@ -43,9 +43,14 @@ export default function AuthProvider({ children }) {
         navigate("/");
     }
 
+    function loggedIn () {
+        setAuthenticationStatus(true);
+        navigate("home");
+    }
+
     return (
         <>    
-            <AuthContext.Provider value ={{ authenticationStatus, isLoading, logOut }}>
+            <AuthContext.Provider value ={{ authenticationStatus, isLoading, logOut, loggedIn}}>
                 {children}
             </AuthContext.Provider>;
         </>
