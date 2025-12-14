@@ -1,5 +1,5 @@
 export async function newSend( dataObject ) {
-    const response = await fetch('http://localhost:8000/sends', {
+    const response = await fetch('/api/sends', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -15,7 +15,7 @@ export async function retrieveClimbs ( dataObject ){
         target_date: dataObject.target_date
     });
 
-    const response = await fetch(`http://localhost:8000/prev_sends?${params}`, {
+    const response = await fetch(`/api/prev_sends?${params}`, {
         method: "GET",
         headers : {
             "Content-Type" : "application/json"
@@ -27,14 +27,14 @@ export async function retrieveClimbs ( dataObject ){
 }
 
 export async function deleteClimb( dataObject ) {
-    const response = await fetch(`http://localhost:8000/sends/${dataObject}`, {
+    const response = await fetch(`/api/sends/${dataObject}`, {
         method: "DELETE",
         credentials: 'include'
     });
 }
 
 export async function newClimber( dataObject ) {
-    const response = await fetch('http://localhost:8000/new_climber', {
+    const response = await fetch('/api/new_climber', {
         method: "POST",
         headers : {
           "Content-Type" : "application/json"  
@@ -52,7 +52,7 @@ export async function login( dataObject ) {
     formData.append("username", username);
     formData.append("password", password);
     
-    const response = await fetch('http://localhost:8000/token', {
+    const response = await fetch('/api/token', {
         method: "POST",
         body: formData,
         credentials: 'include'
@@ -62,7 +62,7 @@ export async function login( dataObject ) {
 }
 
 export async function statusCheck(){
-    const response = await fetch('http://localhost:8000/status', {
+    const response = await fetch('/api/status', {
         method: "GET",
         credentials: 'include'
     });
