@@ -15,7 +15,6 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 
 def get_current_climber(session: SessionDep, token: Annotated[str | None, Cookie()] = None):
-    print(f'Token from Front: {token}')
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -25,7 +24,11 @@ def get_current_climber(session: SessionDep, token: Annotated[str | None, Cookie
     try: 
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username = payload.get("sub")
+        expire_time = payload.get("exp")
+        current_time = datetime.now(timezone.utc)
         if username is None:
+            raise credentials_exception
+        if current_time > expire_time:
             raise credentials_exception
         token_data = TokenData(username=username)
     except InvalidTokenError:
@@ -33,7 +36,5 @@ def get_current_climber(session: SessionDep, token: Annotated[str | None, Cookie
     user = get_climber(session, username=token_data.username)
     if user is None:
         raise credentials_exception
-    return {"status" : "user is logged in and authenticated"}
-    
-
+    return {"user": user, "status" : "valid credentials"}
 
