@@ -24,17 +24,10 @@ def get_current_climber(session: SessionDep, token: Annotated[str | None, Cookie
     try: 
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username = payload.get("sub")
-        expire_time = payload.get("exp")
-        current_time = datetime.now(timezone.utc)
         if username is None:
-            raise credentials_exception
-        if current_time > expire_time:
-            raise credentials_exception
-        token_data = TokenData(username=username)
+            raise credentials_exception  
     except InvalidTokenError:
+        print("InvalidTokenError")
         raise credentials_exception
-    user = get_climber(session, username=token_data.username)
-    if user is None:
-        raise credentials_exception
-    return {"user": user, "status" : "valid credentials"}
-
+    user = get_climber(session, username)
+    return user

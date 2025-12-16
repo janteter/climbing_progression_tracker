@@ -39,6 +39,7 @@ def get_climber(session: SessionDep, username: str):
     climber = session.exec(stmt).scalars().first()
     if climber:
         return climber
+    return None
 
 def authenticate_climber(username: str, password: str, session: SessionDep):
     climber = get_climber(session, username)
