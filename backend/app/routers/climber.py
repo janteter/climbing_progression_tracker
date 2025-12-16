@@ -46,5 +46,5 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     return {"message": "Successful login"}
 
 @router.get("/status")
-async def status_check(climber_status: Depends(get_current_climber)):
-    return climber_status["status"]
+async def status_check(authenticated_climber: Annotated[ClimberInDB, Depends(get_current_climber)]):
+    return {"status" : "climber authenticated and logged in"}
