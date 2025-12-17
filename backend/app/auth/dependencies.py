@@ -22,6 +22,7 @@ def get_current_climber(session: SessionDep, token: Annotated[str | None, Cookie
     )
 
     try: 
+        print(f'token : {token}')
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username = payload.get("sub")
         if username is None:

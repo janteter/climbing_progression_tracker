@@ -1,5 +1,5 @@
 export async function newSend( dataObject ) {
-    const response = await fetch('/api/sends', {
+    const response = await fetch('http://127.0.0.1:8000/sends', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -15,7 +15,7 @@ export async function retrieveClimbs ( dataObject ){
         target_date: dataObject.target_date
     });
 
-    const response = await fetch(`/api/prev_sends?${params}`, {
+    const response = await fetch(`http://127.0.0.1:8000/prev_sends?${params}`, {
         method: "GET",
         headers : {
             "Content-Type" : "application/json"
@@ -52,7 +52,7 @@ export async function login( dataObject ) {
     formData.append("username", username);
     formData.append("password", password);
     
-    const response = await fetch('/api/token', {
+    const response = await fetch('http://127.0.0.1:8000/token', {
         method: "POST",
         body: formData,
         credentials: 'include'
@@ -62,7 +62,7 @@ export async function login( dataObject ) {
 }
 
 export async function statusCheck(){
-    const response = await fetch('/api/status', {
+    const response = await fetch('http://127.0.0.1:8000/status', {
         method: "GET",
         credentials: 'include'
     });
