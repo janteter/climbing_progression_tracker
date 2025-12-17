@@ -21,14 +21,18 @@ def create_send(send: Send, session: SessionDep, token: Annotated[str | None, Co
     return send
 
 @router.delete("/sends/{sequence}")
-def delete_send(sequence: str, session: SessionDep):
-    stmt = delete(Send).where(Send.sequence == sequence)
+def delete_send(sequence: str, session: SessionDep, token: Annotated[str | None, Cookie()] = None):
+    climber = get_current_climber(session, token)
+    climberID = climber.climberID
+    stmt = delete(Send).where(Send.sequence == sequence and Send.climberID == climberID)
     session.exec(stmt)
     session.commit()
 
 @router.get("/prev_sends", response_model=list[SendListItem], status_code=200)
-def prev_sends_by_date(target_date: date, session: SessionDep):
-    sends = session.exec(select(Send).where(Send.send_date == target_date)).scalars().all()
+def prev_sends_by_date(target_date: date, session: SessionDep, token: Annotated[str | None, Cookie()] = None):
+    climber = get_current_climber(session, token)
+    climberID = climber.climberID
+    sends = session.exec(select(Send).where(Send.send_date == target_date and Send.climberID == climberID)).scalars().all()
     if not sends:
         raise HTTPException(status_code=404, detail="No sends found for date inputted")
     return sends
