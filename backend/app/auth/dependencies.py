@@ -1,5 +1,4 @@
 from ..databaseConnection import SessionDep
-from ..models import TokenData
 from .utils import get_climber
 
 import jwt
