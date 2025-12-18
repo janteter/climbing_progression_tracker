@@ -2,7 +2,6 @@ from ..databaseConnection import SessionDep
 from ..models import ClimberBase
 from ..schemas import ClimberInDB 
 from ..auth.utils import get_password_hash, create_access_tokens, authenticate_climber
-from ..models import Token
 from ..auth.dependencies import get_current_climber
 
 from fastapi import APIRouter, HTTPException, Depends, Response
