@@ -1,7 +1,7 @@
 import './AddSend.css';
 import MyButton from  '../components/MyButton.jsx';
 import HomeNavigationBar from '../components/HomeNavigationBar.jsx';
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { newSend } from '../api/api.js';
 
 
@@ -34,6 +34,35 @@ export default function AddSend(){
         }
     };
 
+    const numOfDifficulties = 15;
+    const difficulties = Array.from({ length: numOfDifficulties}, (v, i) => `V${i}`).map((diff) =>
+        <Fragment key={diff}>
+            <input 
+                type="radio" 
+                id={`climbDiff${diff}`}
+                name="difficulty"
+                value={`${diff}`} 
+                checked={form.difficulty === `${diff}`} 
+                onChange={handleChange}/>
+            <label htmlFor={`climbDiff${diff}`}>{diff}</label>
+        </Fragment>
+    );
+
+    const listOfStyles = ["Slab", "Overhang", "Incline", "Traverse"];
+    const numOfStyles = listOfStyles.length;
+    const styles = Array.from({ length: numOfStyles}, (v, i) => listOfStyles[i]).map((style) => 
+        <Fragment key={style}>
+            <input 
+                type="radio" 
+                id={style}
+                name="style" 
+                value={style}
+                checked={form.style === style} 
+                onChange={handleChange}/>
+           <label htmlFor={style}>{style}</label>
+        </Fragment>
+    );
+
     return (
         <>
         <div><HomeNavigationBar></HomeNavigationBar> </div>
@@ -48,55 +77,15 @@ export default function AddSend(){
                 <fieldset>
                     <legend>Please select the climb style:</legend>
                     <div>
-                        <input type="radio" id="styleChoice1" name="style" value="Slab" checked={form.style === 'Slab'} onChange={handleChange}/>
-                        <label htmlFor="styleChoice1">Slab</label>
-                        <input type="radio" id="styleChoice2" name="style" value="Overhang" checked={form.style === 'Overhang'} onChange={handleChange}/>
-                        <label htmlFor="styleChoice2">Overhang</label>
-                        <input type="radio" id="styleChoice3" name="style" value="Incline" checked={form.style === 'Incline'} onChange={handleChange}/>
-                        <label htmlFor="styleChoice3">Incline</label>
-                        <input type="radio" id="styleChoice4" name="style" value="Traverse" checked={form.style === 'Traverse'} onChange={handleChange}/>
-                        <label htmlFor="styleChoice4">Traverse</label>
+                        {styles}
                     </div>
                 </fieldset>
                 <fieldset>
-                    <legend>Please select a climb difficulty</legend>
+                    <legend>Test of Dynamic list for difficulties</legend>
                     <div>
-                        <input type="radio" id="climbDiff0" name="difficulty" value="V0" checked={form.difficulty === 'V0'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff0">V0</label>
-                        <input type="radio" id="climbDiff1" name="difficulty" value="V1" checked={form.difficulty === 'V1'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff1">V1</label>
-                        <input type="radio" id="climbDiff2" name="difficulty" value="V2" checked={form.difficulty === 'V2'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff2">V2</label>
-                        <input type="radio" id="climbDiff3" name="difficulty" value="V3" checked={form.difficulty === 'V3'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff3">V3</label>
-                        <input type="radio" id="climbDiff4" name="difficulty" value="V4" checked={form.difficulty === 'V4'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff4">V4</label>
-                        <input type="radio" id="climbDiff5" name="difficulty" value="V5" checked={form.difficulty === 'V5'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff5">V5</label>
-                        <input type="radio" id="climbDiff6" name="difficulty" value="V6" checked={form.difficulty === 'V6'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff6">V6</label>
-                        <input type="radio" id="climbDiff7" name="difficulty" value="V7" checked={form.difficulty === 'V7'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff7">V7</label>
-                        <br/>
-                        <input type="radio" id="climbDiff8" name="difficulty" value="V8" checked={form.difficulty === 'V8'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff8">V8</label>
-                        <input type="radio" id="climbDiff9" name="difficulty" value="V9" checked={form.difficulty === 'V9'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff9">V9</label>
-                        <input type="radio" id="climbDiff10" name="difficulty" value="V10" checked={form.difficulty === 'V10'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff2">V10</label>
-                        <input type="radio" id="climbDiff11" name="difficulty" value="V11" checked={form.difficulty === 'V11'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff3">V11</label>
-                        <input type="radio" id="climbDiff12" name="difficulty" value="V12" checked={form.difficulty === 'V12'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff12">V12</label>
-                        <input type="radio" id="climbDiff13" name="difficulty" value="V13" checked={form.difficulty === 'V13'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff13">V13</label>
-                        <input type="radio" id="climbDiff14" name="difficulty" value="V14" checked={form.difficulty === 'V14'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff14">V14</label>
-                        <input type="radio" id="climbDiff15" name="difficulty" value="V15" checked={form.difficulty === 'V15'} onChange={handleChange}/>
-                        <label htmlFor="climbDiff15">V15</label>
+                        {difficulties}
                     </div>
                 </fieldset>
-                
                 <fieldset>
                     <legend>Please select the general hold type:</legend>
                     <div>
