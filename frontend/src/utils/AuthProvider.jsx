@@ -52,7 +52,7 @@ export default function AuthProvider({ children }) {
         <>    
             <AuthContext.Provider value ={{ authenticationStatus, isLoading, logOut, loggedIn}}>
                 {children}
-            </AuthContext.Provider>;
+            </AuthContext.Provider>
         </>
     );   
 };

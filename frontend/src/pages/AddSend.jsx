@@ -14,6 +14,10 @@ export default function AddSend(){
         notes: ''
     });
 
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [responseMessage, setResponseMessage] = useState('');
+    
+
     const handleChange = (e) => {
         setForm({
             ...form,
@@ -27,10 +31,16 @@ export default function AddSend(){
         try{
             console.log(form);
             const response = await newSend(form);
-            alert('Send Added Successfully!');
+            console.log(response.ok);
+
+            if (response.ok) {
+                setShowSuccess(true);
+                setResponseMessage('Climb successfully added!');
+            }
+
         }
         catch (error) {
-            console.error('Failed to Add Send :(');
+            console.error(`Failed to Add Send: ${error}`);
         }
     };
 
@@ -102,6 +112,9 @@ export default function AddSend(){
                 <MyButton text="Add to Catalogue"></MyButton>
 
             </form>
+            <div>
+                {showSuccess && responseMessage}
+            </div>
         </div>
 
         </>

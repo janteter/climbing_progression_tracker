@@ -18,5 +18,5 @@ export default function PrivateRoute() {
     }, [isLoading, authenticationStatus, navigate]
 );
 
-    return <Outlet/>;  
+    return (<Outlet/>);  
 }

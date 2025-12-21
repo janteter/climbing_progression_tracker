@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+body {
+  background-image: url('src/assets/istockphoto-climbing.jpg');
+}
+
+h1 {
+  background-color: white;
+}
