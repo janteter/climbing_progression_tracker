@@ -11,7 +11,7 @@ from typing import Annotated
 
 router = APIRouter()
 
-@router.post("/sends", response_model=SendBase)
+@router.post("/sends", response_model=SendBase, status_code=200)
 def create_send(send: Send, session: SessionDep, token: Annotated[str | None, Cookie()] = None) -> any:
     climber = get_current_climber(session, token)
     send.climberID = climber.climberID
