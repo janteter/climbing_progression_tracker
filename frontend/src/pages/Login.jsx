@@ -42,36 +42,40 @@ export default function Login(){
 
     return( 
         <>
-        <h1>Login</h1>
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username: </label>
-                <input
-                type="text"
-                value={loginInfo.username}
-                onChange={handleChange}
-                id="username"
-                >
-                </input><br/><br/>
-                
-                <label htmlFor="password">Password: </label>
-                <input
-                type="text"
-                value={loginInfo.password}
-                onChange={handleChange}
-                id="password"
-                ></input>
-                <br/>
-            <MyButton text='login'></MyButton>
-            </form>
-        </div>
-        <br/><br/>
-        <div>
-            <nav>    
-                <NavLink to="/register">            
-                    <MyButton text="Registration" ></MyButton>
-                </NavLink>
-            </nav>
+        <div class="child">
+            <h1>Login</h1>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div class="inputs">
+                        <input
+                        type="text"
+                        value={loginInfo.username}
+                        onChange={handleChange}
+                        id="username"
+                        placeholder='Username'
+                        >
+                        </input>
+                    </div>
+                    <div class="inputs">
+                        <input
+                        type="text"
+                        value={loginInfo.password}
+                        onChange={handleChange}
+                        id="password"
+                        placeholder='Password'
+                        ></input>
+                    </div>
+                <MyButton text='Login'></MyButton>
+                </form>
+            </div>
+            <p> OR</p>
+            <div>
+                <nav>    
+                    <NavLink to="/register">            
+                        <MyButton text="Register" ></MyButton>
+                    </NavLink>
+                </nav>
+            </div>
         </div>
         </>
     );

@@ -45,6 +45,13 @@ body {
   background-image: url('src/assets/istockphoto-climbing.jpg');
 }
 
-h1 {
+/* h1 {
+  text-align: left;
+  height: 100%;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding-top: 1%;
+  padding-bottom: 2%;
+  border-radius: 10px;
   background-color: white;
-}
+} */
