@@ -13,7 +13,6 @@ export default function Login(){
         password: ''
     });
     const { loggedIn } = useAuth();
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,39 +41,44 @@ export default function Login(){
 
     return( 
         <>
-        <div class="child">
-            <h1>Login</h1>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <div class="inputs">
-                        <input
-                        type="text"
-                        value={loginInfo.username}
-                        onChange={handleChange}
-                        id="username"
-                        placeholder='Username'
-                        >
-                        </input>
-                    </div>
-                    <div class="inputs">
-                        <input
-                        type="text"
-                        value={loginInfo.password}
-                        onChange={handleChange}
-                        id="password"
-                        placeholder='Password'
-                        ></input>
-                    </div>
-                <MyButton text='Login'></MyButton>
-                </form>
-            </div>
-            <p> OR</p>
-            <div>
-                <nav>    
-                    <NavLink to="/register">            
-                        <MyButton text="Register" ></MyButton>
-                    </NavLink>
-                </nav>
+        <div class="page-container">
+            <div><h1 class="title">Climbing Progression Tracker</h1></div>
+            <div class="login-container">
+                <h1>Login</h1>
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <input
+                            class="inputs"
+                            type="text"
+                            value={loginInfo.username}
+                            onChange={handleChange}
+                            id="username"
+                            placeholder='Username'
+                            >
+                            </input>
+                        </div>
+                        <div>
+                            <input
+                            class="inputs"
+                            type="text"
+                            value={loginInfo.password}
+                            onChange={handleChange}
+                            id="password"
+                            placeholder='Password'
+                            ></input>
+                        </div>
+                    <MyButton text='Login'></MyButton>
+                    </form>
+                </div>
+                <p> OR</p>
+                <div>
+                    <nav>    
+                        <NavLink to="/register">            
+                            <MyButton text="Register" ></MyButton>
+                        </NavLink>
+                    </nav>
+                </div>
             </div>
         </div>
         </>
