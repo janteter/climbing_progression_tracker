@@ -1,14 +1,34 @@
-#root {
+.page-container{
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-.child {
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  border-radius: 10%;
+  width: 300px;
+  border-radius: 20px;
   background-color: white;
-  vertical-align: middle;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(112, 112, 112);
+}
+
+.title {
+  background-color: white;
+  width: 750px;
+  height: 70px;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(112, 112, 112);
+
 }
 
 .custom-b {
@@ -18,9 +38,10 @@
 
 .inputs {
     box-sizing: border-box;
-    width: 300px;
+    width: 250px;
     height: 50px;
     margin-top: 5%;
     margin-bottom: 5%;
     display: block;
+    font-size: 20px;
 }
