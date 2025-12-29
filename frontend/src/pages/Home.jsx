@@ -6,9 +6,9 @@ export default function Home() {
     return(
         <>
         <div class="page-container">
-            <h1 class="title"> Climbing Progression Tracker </h1>
+            <h1 class="home-title"> Home </h1>
             <div>
-                <p className="myIntro">
+                <p class="myIntro">
                     Welcome to the Climbing Progression Tracker <br/>
                     This application allows you to record, add, and review your climbing ascents! <br/>
                 </p>

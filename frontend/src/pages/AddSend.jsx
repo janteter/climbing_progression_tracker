@@ -75,48 +75,51 @@ export default function AddSend(){
 
     return (
         <>
-        <div><HomeNavigationBar></HomeNavigationBar> </div>
-        <h1>This is where you add a send!</h1>
-        <div>
-            <p>
-                Please add information about your send below!
-            </p>
-        </div>
-        <div>
-            <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <legend>Please select the climb style:</legend>
-                    <div>
-                        {styles}
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Test of Dynamic list for difficulties</legend>
-                    <div>
-                        {difficulties}
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Please select the general hold type:</legend>
-                    <div>
-                        <input type="radio" id="holdsChoice1" name="holds" value="Crimps" checked={form.holds === 'Crimps'} onChange={handleChange}/>
-                        <label htmlFor="holdsChoice1">Crimps</label>
-                        <input type="radio" id="holdsChoice2" name="holds" value="Jugs" checked={form.holds === 'Jugs'} onChange={handleChange}/>
-                        <label htmlFor="holdsChoice2">Jugs</label>
-                        <input type="radio" id="holdsChoice3" name="holds" value="Slopers" checked={form.holds === 'Slopers'} onChange={handleChange}/>
-                        <label htmlFor="holdsChoice3">Slopers</label>
-                        <input type="radio" id="holdsChoice4" name="holds" value="Mixed" checked={form.holds === 'Mixed'} onChange={handleChange}/>
-                        <label htmlFor="holdsChoice4">Mixed</label>
-                    </div>
-                </fieldset>
-                <MyButton text="Add to Catalogue"></MyButton>
+        <div class="page-container">
+            <div><HomeNavigationBar></HomeNavigationBar> </div>
+            <h1 class="add-send-title">This is where you add a send!</h1>
+            <div class="add-inputs">
+                <div>
+                    <p>
+                        Please add information about your send below!
+                    </p>
+                </div>
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <fieldset>
+                            <legend>Please select the climb style:</legend>
+                            <div>
+                                {styles}
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Test of Dynamic list for difficulties</legend>
+                            <div>
+                                {difficulties}
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Please select the general hold type:</legend>
+                            <div>
+                                <input type="radio" id="holdsChoice1" name="holds" value="Crimps" checked={form.holds === 'Crimps'} onChange={handleChange}/>
+                                <label htmlFor="holdsChoice1">Crimps</label>
+                                <input type="radio" id="holdsChoice2" name="holds" value="Jugs" checked={form.holds === 'Jugs'} onChange={handleChange}/>
+                                <label htmlFor="holdsChoice2">Jugs</label>
+                                <input type="radio" id="holdsChoice3" name="holds" value="Slopers" checked={form.holds === 'Slopers'} onChange={handleChange}/>
+                                <label htmlFor="holdsChoice3">Slopers</label>
+                                <input type="radio" id="holdsChoice4" name="holds" value="Mixed" checked={form.holds === 'Mixed'} onChange={handleChange}/>
+                                <label htmlFor="holdsChoice4">Mixed</label>
+                            </div>
+                        </fieldset>
+                        <MyButton text="Add to Catalogue"></MyButton>
 
-            </form>
-            <div>
-                {showSuccess && responseMessage}
+                    </form>
+                    <div>
+                        {showSuccess && responseMessage}
+                    </div>
+                </div>
             </div>
         </div>
-
         </>
     );
 }
