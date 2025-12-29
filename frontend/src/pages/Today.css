@@ -1,0 +1,13 @@
+.today-title {
+  background-color: white;
+  width: 430px;
+  height: 70px;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(112, 112, 112);
+}
+
+.list {
+    background-color: white;
+}

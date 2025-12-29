@@ -72,29 +72,33 @@ export default function PrevSends(){
 
     return(
         <>
-            <div><HomeNavigationBar></HomeNavigationBar></div>
-            <h1>View Previous Sends</h1>
-            <div>
-                <p>Please enter a date in the to view climbs from that day</p>
-            </div>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="date"> Target Date <br/>(YYYY-MM-DD) <br/></label>
-                    <input
-                        className="inbox"
-                        type="text"
-                        id="date"
-                        value={form.date}
-                        onChange={handleChange}>
-                    </input><br/>
-                    <MyButton className="retrieve" text="Retrieve"></MyButton> <br/>
-                </form>
-            </div>
-            <div>   
-                {sendsList && displaySendList}
-            </div> 
-            <div><br/>
-                {errorShow && errorMessage}
+            <div class="page-container">
+                <div><HomeNavigationBar></HomeNavigationBar></div>
+                <h1 class="previous-title">View Previous Sends</h1>
+                <div class="previous-inputs">
+                    <div>
+                        <p>Please enter a date in the to view climbs from that day</p>
+                    </div>
+                    <div>
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="date"> Target Date <br/>(YYYY-MM-DD) <br/></label>
+                            <input
+                                className="inbox"
+                                type="text"
+                                id="date"
+                                value={form.date}
+                                onChange={handleChange}>
+                            </input><br/>
+                            <MyButton className="retrieve" text="Retrieve"></MyButton> <br/>
+                        </form>
+                    </div>
+                </div>
+                <div>   
+                    {sendsList && displaySendList}
+                </div> 
+                <div><br/>
+                    {errorShow && errorMessage}
+                </div>
             </div>
         </>
     );

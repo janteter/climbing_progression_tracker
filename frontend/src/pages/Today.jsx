@@ -66,13 +66,15 @@ export default function TodaySends() {
 
     return( 
         <>
-            <div>
-                <HomeNavigationBar></HomeNavigationBar>
-            </div>
-            <h1> Today's Sends</h1>
-            <div> 
-                {sendsData && displaySendList} 
-                {errorShow && errorMessage}
+            <div class="page-container">
+                <div>
+                    <HomeNavigationBar></HomeNavigationBar>
+                </div>
+                <h1 class="today-title"> Today's Sends</h1>
+                <div> 
+                    {sendsData && displaySendList} 
+                    {errorShow && errorMessage}
+                </div>
             </div>
         </>
     );
