@@ -3,7 +3,7 @@ import MyButton from  '../components/MyButton.jsx';
 import HomeNavigationBar from '../components/HomeNavigationBar.jsx';
 import { useState, Fragment } from 'react';
 import { newSend } from '../api/api.js';
-
+import { dateFormat } from "../utils/Utilities.js";
 
 export default function AddSend(){
 
@@ -111,6 +111,18 @@ export default function AddSend(){
                                 <label htmlFor="holdsChoice4">Mixed</label>
                             </div>
                         </fieldset>
+                        <fieldset>
+                            <div>
+                                <legend>Please select the date type:</legend>
+                                <div>
+                                    <input type="radio" id="dateOption1" name="date" value={dateFormat} checked={form.holds === 'Crimps'} onChange={handleChange}/>
+                                    <label htmlFor="dateOption1">Today</label>
+                                    <input type="radio" id="dateOption2" name="holds" value="Jugs" checked={form.holds === 'Jugs'} onChange={handleChange}/>
+                                    <label htmlFor="dateOption1">Previous Date</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
                         <MyButton text="Add to Catalogue"></MyButton>
 
                     </form>

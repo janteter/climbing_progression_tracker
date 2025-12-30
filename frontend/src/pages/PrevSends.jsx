@@ -31,7 +31,16 @@ export default function PrevSends(){
             if(!response.ok) {
                 setSendsList([]);
                 setErrorShow(true);
-                setErrorMessage(`No climbs found for ${form.target_date}`);
+                if(response.status == 404) {
+                    setErrorMessage(`No climbs found for ${form.target_date}`);    
+                }
+                else if(response.status == 422){
+                    setErrorMessage('Unable to process the date inputted, Please check you are following the format of YYYY-MM-DD');
+                }
+                else{
+                    setErrorMessage(`Error status code: ${response.status}`);
+                }
+
                 throw new Error(`Response Status: ${response}`);
             }
             else {
@@ -91,14 +100,15 @@ export default function PrevSends(){
                             </input><br/>
                             <MyButton className="retrieve" text="Retrieve"></MyButton> <br/>
                         </form>
+                    </div> 
+                    <div class="response-msg">
+                        {errorShow && errorMessage}
                     </div>
                 </div>
+
                 <div>   
                     {sendsList && displaySendList}
                 </div> 
-                <div><br/>
-                    {errorShow && errorMessage}
-                </div>
             </div>
         </>
     );
