@@ -12,6 +12,9 @@ export default function Login(){
         username: '',
         password: ''
     });
+
+    const [failedLogin, setFailedLogin] = useState(false);
+
     const { loggedIn } = useAuth();
 
     const handleSubmit = async (e) => {
@@ -25,11 +28,25 @@ export default function Login(){
                 console.log("login navigating");
             }
 
+            if (response.status == 401) {
+                setFailedLogin(true);
+            }
+
         }
         catch (error){
             console.error(error);
         }
 
+    };
+
+    function IncorrectCreds ({ credStatus }) {
+        if (credStatus) {
+            return <>
+                <div>
+                    <p>Username or Password is incorrect.<br/> Please retry.</p>
+                </div>
+            </>;
+        }
     };
 
     const handleChange = (e) => {
@@ -45,6 +62,7 @@ export default function Login(){
             <div><h1 class="title">Climbing Progression Tracker</h1></div>
             <div class="login-container">
                 <h1>Login</h1>
+                <IncorrectCreds credStatus={failedLogin}></IncorrectCreds>
                 <div>
                     <form onSubmit={handleSubmit}>
                         <div>

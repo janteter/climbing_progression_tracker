@@ -35,6 +35,10 @@
     margin-bottom: 5%;
 }
 
+.cred-fail {
+  display: none;
+}
+
 .inputs {
     box-sizing: border-box;
     width: 250px;
