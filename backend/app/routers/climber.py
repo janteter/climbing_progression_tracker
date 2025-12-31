@@ -4,7 +4,7 @@ from ..schemas import ClimberInDB
 from ..auth.utils import get_password_hash, create_access_tokens, authenticate_climber
 from ..auth.dependencies import get_current_climber
 
-from fastapi import APIRouter, HTTPException, Depends, Response
+from fastapi import APIRouter, HTTPException, Depends, Response, status
 import json
 from typing import Annotated
 from fastapi.security import OAuth2PasswordRequestForm
