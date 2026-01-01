@@ -21,3 +21,7 @@ h1{
   border-width: 5px;
   border-color: rgb(112, 112, 112);  
 }
+
+.success {
+  margin-top: 0px;
+}

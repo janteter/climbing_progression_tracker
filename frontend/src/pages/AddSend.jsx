@@ -7,16 +7,19 @@ import { dateFormat } from "../utils/Utilities.js";
 
 export default function AddSend(){
 
+    
+    const todayDate = dateFormat();
     const [form, setForm] = useState({
         style: 'Slab',
         difficulty: 'V0',
         holds: 'Crimps',
+        date: todayDate,
         notes: ''
     });
 
     const [showSuccess, setShowSuccess] = useState(false);
-    const [responseMessage, setResponseMessage] = useState('');
-    
+    const [dateOption, setDateOption] = useState('predefined');
+
 
     const handleChange = (e) => {
         setForm({
@@ -35,7 +38,6 @@ export default function AddSend(){
 
             if (response.ok) {
                 setShowSuccess(true);
-                setResponseMessage('Climb successfully added!');
             }
 
         }
@@ -43,6 +45,18 @@ export default function AddSend(){
             console.error(`Failed to Add Send: ${error}`);
         }
     };
+
+    function Success ( {status} ){
+        if (status) {
+            return(
+                <>
+                    <div>
+                        <p className='success'>Climb successfully added!</p>
+                    </div>
+                </>
+            );
+        }
+    }
 
     const numOfDifficulties = 15;
     const difficulties = Array.from({ length: numOfDifficulties}, (v, i) => `V${i}`).map((diff) =>
@@ -115,20 +129,33 @@ export default function AddSend(){
                             <div>
                                 <legend>Please select the date type:</legend>
                                 <div>
-                                    <input type="radio" id="dateOption1" name="date" value={dateFormat} checked={form.holds === 'Crimps'} onChange={handleChange}/>
+                                    <input 
+                                        type="radio" 
+                                        id="dateOption1" 
+                                        name="date" 
+                                        value={todayDate} 
+                                        onChange={() => {handleChange; setDateOption("predefined");}}
+                                        checked={dateOption === "predefined"}
+                                    
+                                    />
                                     <label htmlFor="dateOption1">Today</label>
-                                    <input type="radio" id="dateOption2" name="holds" value="Jugs" checked={form.holds === 'Jugs'} onChange={handleChange}/>
-                                    <label htmlFor="dateOption1">Previous Date</label>
+                                    <input 
+                                        type="radio" 
+                                        id="dateOption2" 
+                                        onChange={() => {setDateOption("custom");}} 
+                                        checked={dateOption === "custom"}/>
+                                    <label htmlFor="dateOption2">Specific Date </label>
+
+                                    {dateOption === "custom" && (<input type="text" id="customDate" name="date" placeholder="YYYY-MM-DD"></input>)}
+                                    <label hmtlFor="customDate"></label>
                                 </div>
                             </div>
                         </fieldset>
 
-                        <MyButton text="Add to Catalogue"></MyButton>
+                        <MyButton className="add-button" text="Add to Catalogue"></MyButton>
 
                     </form>
-                    <div>
-                        {showSuccess && responseMessage}
-                    </div>
+                    <Success status={showSuccess}></Success>
                 </div>
             </div>
         </div>
