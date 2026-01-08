@@ -8,12 +8,13 @@ import { dateFormat } from "../utils/Utilities.js";
 export default function AddSend(){
 
     
-    const todayDate = dateFormat();
+    
+    const [sendDate, setSendDate] = useState(dateFormat);
     const [form, setForm] = useState({
         style: 'Slab',
         difficulty: 'V0',
         holds: 'Crimps',
-        date: todayDate,
+        date: '',
         notes: ''
     });
 
@@ -22,6 +23,7 @@ export default function AddSend(){
 
 
     const handleChange = (e) => {
+        console.log('handleChange called:', e.target.name, e.target.value);
         setForm({
             ...form,
             [e.target.name]: e.target.value
@@ -126,33 +128,52 @@ export default function AddSend(){
                             </div>
                         </fieldset>
                         <fieldset>
+                            <legend>Please select the date type:</legend>
                             <div>
-                                <legend>Please select the date type:</legend>
-                                <div>
-                                    <input 
-                                        type="radio" 
-                                        id="dateOption1" 
-                                        name="date" 
-                                        value={todayDate} 
-                                        onChange={() => {handleChange; setDateOption("predefined");}}
-                                        checked={dateOption === "predefined"}
-                                    
-                                    />
-                                    <label htmlFor="dateOption1">Today</label>
-                                    <input 
-                                        type="radio" 
-                                        id="dateOption2" 
-                                        onChange={() => {setDateOption("custom");}} 
-                                        checked={dateOption === "custom"}/>
-                                    <label htmlFor="dateOption2">Specific Date </label>
+                                <input 
+                                    type="radio" 
+                                    id="dateOption1" 
+                                    name="date" 
+                                    value={dateFormat} 
+                                    onChange={() => {
+                                        setDateOption("predefined"); 
+                                        setForm({
+                                            ...form,
+                                            date: dateFormat
+                                        });
+                                    }}
+                                    checked={dateOption === "predefined"}
+                                
+                                />
+                                <label htmlFor="dateOption1">Today</label>
+                                <input 
+                                    type="radio" 
+                                    id="dateOption2"
+                                    name="date" 
+                                    onChange={() => {
+                                        setDateOption("custom");
+                                        setForm({
+                                            ...form,
+                                            date: ""
+                                        });
+                                    }} 
+                                    checked={dateOption === "custom"}/>
+                                <label htmlFor="dateOption2">Specific Date </label>
 
-                                    {dateOption === "custom" && (<input type="text" id="customDate" name="date" placeholder="YYYY-MM-DD"></input>)}
-                                    <label hmtlFor="customDate"></label>
-                                </div>
+                                {dateOption === "custom" && (
+                                    <input 
+                                        type="text" 
+                                        id="customDate" 
+                                        name="date"
+                                        value={form.date || ""}
+                                        onChange={handleChange} 
+                                        placeholder="YYYY-MM-DD">
+                                    </input>)}
+                                <label hmtlFor="customDate"></label>
                             </div>
                         </fieldset>
 
-                        <MyButton className="add-button" text="Add to Catalogue"></MyButton>
+                        <MyButton text="Add to Catalogue"></MyButton>
 
                     </form>
                     <Success status={showSuccess}></Success>
