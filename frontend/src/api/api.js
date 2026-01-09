@@ -1,4 +1,5 @@
 export async function newSend( dataObject ) {
+    console.log(dataObject);
     const response = await fetch('http://127.0.0.1:8000/sends', {
         method: "POST",
         headers: {

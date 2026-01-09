@@ -13,5 +13,5 @@ class Send(SendBase, table=True):
     __tablename__="Sends"
 
     sequence: str = Field(primary_key=True, default_factory=lambda: str(uuid.uuid4()))
-    send_date: date = Field(default_factory=date.today)
+    send_date: date
     climberID: str = Field(foreign_key="Climber.climberID")

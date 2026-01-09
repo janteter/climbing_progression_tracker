@@ -1,8 +1,10 @@
 import "./Today.css";
 import { useEffect, useState } from 'react';
 import { retrieveClimbs } from '../api/api.js';
+import { deleteClimb } from '../api/api.js';
 import HomeNavigationBar from '../components/HomeNavigationBar.jsx';
 import { dateFormat } from "../utils/Utilities.js";
+import MyButton from "../components/MyButton.jsx";
 
 export default function TodaySends() {
 
@@ -48,11 +50,23 @@ export default function TodaySends() {
         }, []
     );
 
+    const handleDelete = async (e) => {
+    
+            try{
+                const response = await deleteClimb(e);
+            }
+            catch(error){
+                console.error(error.message);
+            }
+    
+        };
+
     const displaySendList = sendsData.map((climb) => 
         <div className="list" key={climb.sequence}>
-            <p className="result" >Style:  <br/>{climb.style}</p>
-            <p className="result" >Difficulty: <br/>{climb.difficulty}</p>
-            <p className="result" >Type of Holds: <br/>{climb.holds}</p>
+            <p className="result" >Style:<br/>{climb.style}</p>
+            <p className="result" >Difficulty:<br/>{climb.difficulty}</p>
+            <p className="result" >Type of Holds:<br/>{climb.holds}</p>
+            <MyButton text="Delete" onClick={() => {handleDelete(climb.sequence);}}></MyButton>
         </div>
     );
 
@@ -63,10 +77,12 @@ export default function TodaySends() {
                     <HomeNavigationBar></HomeNavigationBar>
                 </div>
                 <h1 class="today-title"> Today's Sends</h1>
-                <div> 
-                    {sendsData && displaySendList} 
-                    {errorShow && errorMessage}
+                <div className="allClimbsToday"> 
+                    {sendsData && displaySendList}
                 </div>
+            </div>
+            <div>
+                {errorShow && errorMessage}
             </div>
         </>
     );
