@@ -3,6 +3,7 @@ from ..models import SendBase, SendListItem
 from ..schemas import Send 
 from ..auth.dependencies import get_current_climber
 
+from datetime import datetime
 from fastapi import APIRouter, HTTPException, Cookie
 from datetime import date
 from sqlalchemy import select, delete
@@ -15,9 +16,12 @@ router = APIRouter()
 def create_send(send: Send, session: SessionDep, token: Annotated[str | None, Cookie()] = None) -> any:
     climber = get_current_climber(session, token)
     send.climberID = climber.climberID
-    session.add(send)
-    session.commit()
-    session.refresh(send)
+    try:
+        session.add(send)
+        session.commit()
+        session.refresh(send)
+    except:
+        raise HTTPException(status_code=422, detail="Incorrect Input Format(s)")
     return send
 
 @router.delete("/sends/{sequence}")

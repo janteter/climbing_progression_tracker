@@ -9,16 +9,16 @@ export default function AddSend(){
 
     
     
-    const [sendDate, setSendDate] = useState(dateFormat);
+    const todayDate = dateFormat();
     const [form, setForm] = useState({
         style: 'Slab',
         difficulty: 'V0',
         holds: 'Crimps',
-        date: '',
-        notes: ''
+        send_date: todayDate
     });
 
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showFailure, setShowFailure] = useState(false);
     const [dateOption, setDateOption] = useState('predefined');
 
 
@@ -40,6 +40,11 @@ export default function AddSend(){
 
             if (response.ok) {
                 setShowSuccess(true);
+                setShowFailure(false);
+            }
+            else if (response.status == 422){
+                setShowFailure(true);
+                setShowSuccess(false);
             }
 
         }
@@ -54,6 +59,18 @@ export default function AddSend(){
                 <>
                     <div>
                         <p className='success'>Climb successfully added!</p>
+                    </div>
+                </>
+            );
+        }
+    }
+
+    function Failure ( {status} ){
+        if (status) {
+            return(
+                <>
+                    <div>
+                        <p className='faliure'>Date format invalid<br/>Please make sure the format is YYYY-MM-DD</p>
                     </div>
                 </>
             );
@@ -91,10 +108,10 @@ export default function AddSend(){
 
     return (
         <>
-        <div class="page-container">
+        <div className="page-container">
             <div><HomeNavigationBar></HomeNavigationBar> </div>
-            <h1 class="add-send-title">This is where you add a send!</h1>
-            <div class="add-inputs">
+            <h1 className="add-send-title">This is where you add a send!</h1>
+            <div className="add-inputs">
                 <div>
                     <p>
                         Please add information about your send below!
@@ -133,14 +150,11 @@ export default function AddSend(){
                                 <input 
                                     type="radio" 
                                     id="dateOption1" 
-                                    name="date" 
-                                    value={dateFormat} 
-                                    onChange={() => {
+                                    name="send_date" 
+                                    value={todayDate}
+                                    onChange={(e) => {
+                                        handleChange(e);
                                         setDateOption("predefined"); 
-                                        setForm({
-                                            ...form,
-                                            date: dateFormat
-                                        });
                                     }}
                                     checked={dateOption === "predefined"}
                                 
@@ -149,12 +163,12 @@ export default function AddSend(){
                                 <input 
                                     type="radio" 
                                     id="dateOption2"
-                                    name="date" 
+                                    name="send_date" 
                                     onChange={() => {
                                         setDateOption("custom");
                                         setForm({
                                             ...form,
-                                            date: ""
+                                            send_date: ""
                                         });
                                     }} 
                                     checked={dateOption === "custom"}/>
@@ -164,12 +178,12 @@ export default function AddSend(){
                                     <input 
                                         type="text" 
                                         id="customDate" 
-                                        name="date"
-                                        value={form.date || ""}
+                                        name="send_date"
+                                        value={form.send_date}
                                         onChange={handleChange} 
                                         placeholder="YYYY-MM-DD">
                                     </input>)}
-                                <label hmtlFor="customDate"></label>
+                                <label html="customDate"></label>
                             </div>
                         </fieldset>
 
@@ -177,6 +191,7 @@ export default function AddSend(){
 
                     </form>
                     <Success status={showSuccess}></Success>
+                    <Failure status={showFailure}></Failure>
                 </div>
             </div>
         </div>

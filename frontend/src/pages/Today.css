@@ -10,4 +10,16 @@
 
 .list {
     background-color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.result {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.allClimbsToday {
+  display: grid;
+  grid-template-columns: 250px 250px 250px 250px 250px;
 }
