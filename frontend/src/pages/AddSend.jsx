@@ -7,8 +7,6 @@ import { dateFormat } from "../utils/Utilities.js";
 
 export default function AddSend(){
 
-    
-    
     const todayDate = dateFormat();
     const [form, setForm] = useState({
         style: 'Slab',

@@ -5,6 +5,7 @@ import { deleteClimb } from '../api/api.js';
 import HomeNavigationBar from '../components/HomeNavigationBar.jsx';
 import { dateFormat } from "../utils/Utilities.js";
 import MyButton from "../components/MyButton.jsx";
+import { Drawer } from "@mui/material";
 
 export default function TodaySends() {
 
@@ -61,12 +62,31 @@ export default function TodaySends() {
     
         };
 
+    const [open, setOpen] = useState(false);
+    const toggleDrawer = (newOpen) => () => {
+        setOpen(newOpen);
+    };
+    
+
     const displaySendList = sendsData.map((climb) => 
         <div className="list" key={climb.sequence}>
             <p className="result" >Style:<br/>{climb.style}</p>
             <p className="result" >Difficulty:<br/>{climb.difficulty}</p>
             <p className="result" >Type of Holds:<br/>{climb.holds}</p>
             <MyButton text="Delete" onClick={() => {handleDelete(climb.sequence);}}></MyButton>
+            <MyButton text="Update" onClick={toggleDrawer(true)}></MyButton>
+            <Drawer 
+                open={open} 
+                onClose={toggleDrawer(false)}
+                anchor={'right'}
+                sx={{
+                    '& .MuiDrawer-paper' : {
+                        width: '400px'
+                    }
+                }}
+            >
+                    Update Menu Here!
+            </Drawer>
         </div>
     );
 
