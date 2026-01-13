@@ -35,6 +35,13 @@ export async function deleteClimb( dataObject ) {
     });
 }
 
+export async function updateSend( dataObject ) {
+    const response = await fetch(`http://127.0.0.1:8000/sends/${dataObject}`, {
+        method: "PATCH",
+        credentials: 'include'
+    });
+}
+
 export async function newClimber( dataObject ) {
     const response = await fetch('http://127.0.0.1:8000/new_climber', {
         method: "POST",
