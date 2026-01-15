@@ -32,6 +32,20 @@ def delete_send(sequence: str, session: SessionDep, token: Annotated[str | None,
     session.exec(stmt)
     session.commit()
 
+@router.patch("/sends")
+def update_send(new_send_data: SendListItem, session: SessionDep, token: Annotated[str | None, Cookie()] = None):
+    print(new_send_data)
+    climber = get_current_climber(session, token)
+    climberID = climber.climberID
+    stmt = select(Send).where(Send.sequence == sendData.sequence and Send.climberID == climberID)
+    results = session.exec(stmt)
+    current_send_data = results.one()
+    current_send_data.style = new_send_data.style
+
+    session.add(current_send_data)
+    session.commit()
+    session.refresh(current_send_data)
+
 @router.get("/prev_sends", response_model=list[SendListItem], status_code=200)
 def prev_sends_by_date(target_date: date, session: SessionDep, token: Annotated[str | None, Cookie()] = None):
     climber = get_current_climber(session, token)

@@ -128,14 +128,13 @@ export default function TodaySends() {
             <MyButton 
                 text="Update" 
                 onClick={() =>{
-                    toggleDrawer(true);
                     setForm({...form, 
                         style: climb.style,
                         difficulty: climb.difficulty,
                         holds: climb.holds,
                         sequence: climb.sequence
                     }); 
-                    console.log(form);
+                    toggleDrawer(true)();
                 }}
             >
             </MyButton>
