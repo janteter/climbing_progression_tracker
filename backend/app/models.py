@@ -1,4 +1,5 @@
 from sqlmodel import SQLModel, Field
+from datetime import date
 import uuid
 
 class SendBase(SQLModel):
@@ -8,6 +9,7 @@ class SendBase(SQLModel):
 
 class SendListItem(SendBase):
     sequence: str
+    send_date: date
 
 class ClimberBase(SQLModel):
     

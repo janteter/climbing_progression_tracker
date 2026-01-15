@@ -36,8 +36,10 @@ export async function deleteClimb( dataObject ) {
 }
 
 export async function updateSend( dataObject ) {
-    const response = await fetch(`http://127.0.0.1:8000/sends/${dataObject}`, {
+    console.log(dataObject);
+    const response = await fetch(`http://127.0.0.1:8000/sends`, {
         method: "PATCH",
+        body: JSON.stringify(dataObject),
         credentials: 'include'
     });
 }
